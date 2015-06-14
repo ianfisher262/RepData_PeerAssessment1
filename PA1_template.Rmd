@@ -1,4 +1,13 @@
 #Reproducible Research Peer Assignment 1
+##Set global options
+Always make code visible,
+```{r}
+echo = TRUE 
+```
+and turn off scientific notation for numbers.
+```{r}
+options(scipen = 1)
+```
 ##Introduction
 This assignment makes use of data from a personal activity monitoring device. This device collects data at 5 minute intervals through out the day. The data consists of two months of data from an anonymous individual collected during the months of October and November, 2012 and include the number of steps taken in 5 minute intervals each day.
 
@@ -110,7 +119,7 @@ To evaluate the impact of the imputed values on the character of the data, two h
 The data was plotted using the hist function and the par function was used to place the output side by side.
 ```{r}
 #plot histograms of total steps per day side by side for imputed and raw data
-par(mfcol=c(1,2),mar=c(4, 4, 2, 1))
+par(mfcol=c(2,1),mar=c(4, 4, 2, 1))
 
 #histogram of steps per day using imputed data
 dave<-hist(impsum$spd,
@@ -155,7 +164,8 @@ ggplot(allsum,aes(x=daten,
   geom_smooth(method="loess") +
   xlab("Date") + 
   ylab("Average steps per day") + 
-  ggtitle("Smoothed plot of difference in mean steps per day over time\nbetween data with and without imputed values")
+  ggtitle("Smoothed plot of difference in mean steps\nper day over time\nbetween data with and without imputed values")
+
 ```
   
 ##Differences in activity patterns between weekdays and weekends
@@ -183,7 +193,7 @@ library(lattice)
 with(imppanel, {
   xyplot(meanstep~interval|weekend,
          type="l",
-         main="Comparison of mean steps per 5 minute interval during weekdays and weekends",
+         main="Comparison of mean steps per 5 minute\ninterval during weekdays and weekends",
          xlab="5 minute interval",
          ylab="Mean number of steps",
          layout=c(1,2))
